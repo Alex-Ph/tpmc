@@ -13,9 +13,6 @@ public class ClientProxy extends CommonProxy {
 		registerItems(TpmcMod.gabbaItem);
 
 		registerBlock(TpmcMod.gabbaBlock);
-
-		// TODO: ALLES SCHICKER MACHEN
-		registerBlock(TpmcMod.booomBlock);
 	}
 
 	private void registerItems(Item item) {

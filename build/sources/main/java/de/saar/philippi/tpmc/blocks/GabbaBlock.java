@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,6 +18,13 @@ public class GabbaBlock extends BasicBlock {
 
 	public GabbaBlock() {
 		super(Material.ROCK, "gabba_ore");
+	}
+
+	public ItemBlock asItemBlock() {
+		ItemBlock itemBlock = new ItemBlock(this);
+		itemBlock.setRegistryName(getRegistryName());
+
+		return itemBlock;
 	}
 
 	@Override
@@ -36,6 +44,8 @@ public class GabbaBlock extends BasicBlock {
 
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+		// worldIn.newExplosion(player, pos.getX(), pos.getY(), pos.getZ(), 7,
+		// true, true);
 		worldIn.addWeatherEffect(new EntityLightningBolt(worldIn, pos.getX() + 1, pos.getY(), pos.getZ(), true));
 	}
 
