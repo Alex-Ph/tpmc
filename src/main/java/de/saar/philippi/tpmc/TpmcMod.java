@@ -18,7 +18,7 @@ public class TpmcMod {
 	public static final String MODID = "tpmc";
 	public static final String VERSION = "1.0";
 
-	public static final Harvest10UnitsBlock booomBlock = new Harvest10UnitsBlock();
+	public static final Harvest10UnitsBlock harvest10Block = new Harvest10UnitsBlock();
 
 	@SidedProxy(clientSide = "de.saar.philippi.tpmc.proxy.ClientProxy", serverSide = "de.saar.philippi.tpmc.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -29,17 +29,17 @@ public class TpmcMod {
 	public void preInit(FMLPreInitializationEvent e) {
 
 		// Blocks
-		GameRegistry.register(booomBlock);
+		GameRegistry.register(harvest10Block);
 
 		// ItemBlock
-		GameRegistry.register(booomBlock.asItemBlock());
+		GameRegistry.register(harvest10Block.asItemBlock());
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 
 		// Receipe
-		GameRegistry.addShapedRecipe(new ItemStack(booomBlock), "dd", "dd", 'd', Blocks.DIRT);
+		GameRegistry.addShapedRecipe(new ItemStack(harvest10Block), "dd", "dd", 'd', Blocks.DIRT);
 
 		proxy.registerClientData();
 	}

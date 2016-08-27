@@ -1,7 +1,9 @@
-package de.saar.philippi.tpmc.harvester;
+package de.saar.philippi.tpmc.harvester.nineblocks;
 
 import java.util.List;
 
+import de.saar.philippi.tpmc.harvester.IsHarvester;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -24,11 +26,11 @@ public class Harvester3x3 implements IsHarvester {
 	public void harvest(World worldIn, BlockPos pos, EnumFacing side) {
 		for (int i = 0; i <= level; i++) {
 
-			List<BlockPos> blocks = HarvestHelper.get3x3BlockPos(pos, i, side);
+			List<BlockPos> blocks = Harvest3x3Helper.get3x3BlockPos(pos, i, side);
 
 			blocks.forEach(blockPosToChange -> harvestBlock(worldIn, blockPosToChange));
 
-			addHarvestStuff(worldIn, pos, i, side);
+			addTools(worldIn, pos, i, side);
 		}
 
 	}
@@ -39,31 +41,35 @@ public class Harvester3x3 implements IsHarvester {
 		}
 	}
 
-	private void addHarvestStuff(World worldIn, BlockPos sourcePos, int level, EnumFacing side) {
+	/**
+	 * Adds tools like torches
+	 *
+	 * @param worldIn
+	 * @param sourcePos
+	 * @param level
+	 * @param side
+	 */
+	private void addTools(World worldIn, BlockPos sourcePos, int level, EnumFacing side) {
 		switch (side) {
 		case UP:
-			BlockPos blockPosUp = new BlockPos(sourcePos.getX() - 2, sourcePos.getY() - level, sourcePos.getZ());
-			worldIn.setBlockState(blockPosUp, Blocks.LADDER.getDefaultState());
+			BlockPos blockPosLadder = new BlockPos(sourcePos.getX() - 2, sourcePos.getY() - level, sourcePos.getZ());
+			setBlock(worldIn, blockPosLadder, Blocks.LADDER);
 
 			if (level % 3 == 0) {
 				BlockPos blockPosTorch = new BlockPos(sourcePos.getX() - 3, sourcePos.getY() - level, sourcePos.getZ());
 
-				if (worldIn.getBlockState(blockPosTorch).getBlock().getDefaultState().isFullBlock()) {
-					worldIn.setBlockState(blockPosTorch, Blocks.TORCH.getDefaultState());
-				}
+				setBlock(worldIn, blockPosTorch, Blocks.GLOWSTONE);
 			}
 
 			break;
 		case DOWN:
 			BlockPos blockLadder = new BlockPos(sourcePos.getX() - 2, sourcePos.getY() + level, sourcePos.getZ());
-			worldIn.setBlockState(blockLadder, Blocks.LADDER.getDefaultState());
+			setBlock(worldIn, blockLadder, Blocks.LADDER);
 
 			if (level % 3 == 0) {
 				BlockPos blockPosTorch = new BlockPos(sourcePos.getX() - 3, sourcePos.getY() + level, sourcePos.getZ());
 
-				if (worldIn.getBlockState(blockPosTorch).getBlock().getDefaultState().isFullBlock()) {
-					worldIn.setBlockState(blockPosTorch, Blocks.TORCH.getDefaultState());
-				}
+				setBlock(worldIn, blockPosTorch, Blocks.GLOWSTONE);
 			}
 			break;
 		case SOUTH:
@@ -72,13 +78,8 @@ public class Harvester3x3 implements IsHarvester {
 				BlockPos blockPosLeft = new BlockPos(sourcePos.getX() - 2, sourcePos.getY(), sourcePos.getZ() - level);
 				BlockPos blockPosRight = new BlockPos(sourcePos.getX() - 2, sourcePos.getY(), sourcePos.getZ() + level);
 
-				if (worldIn.getBlockState(blockPosLeft).getBlock().getDefaultState().isFullBlock()) {
-					worldIn.setBlockState(blockPosLeft, Blocks.TORCH.getDefaultState());
-				}
-
-				if (worldIn.getBlockState(blockPosRight).getBlock().getDefaultState().isFullBlock()) {
-					worldIn.setBlockState(blockPosRight, Blocks.TORCH.getDefaultState());
-				}
+				setBlock(worldIn, blockPosLeft, Blocks.GLOWSTONE);
+				setBlock(worldIn, blockPosRight, Blocks.GLOWSTONE);
 			}
 			break;
 		case EAST:
@@ -87,18 +88,27 @@ public class Harvester3x3 implements IsHarvester {
 				BlockPos blockPosLeft = new BlockPos(sourcePos.getX() - level, sourcePos.getY(), sourcePos.getZ() - 2);
 				BlockPos blockPosRight = new BlockPos(sourcePos.getX() + level, sourcePos.getY(), sourcePos.getZ() - 2);
 
-				if (worldIn.getBlockState(blockPosLeft).getBlock().getDefaultState().isFullBlock()) {
-					worldIn.setBlockState(blockPosLeft, Blocks.TORCH.getDefaultState());
-				}
-
-				if (worldIn.getBlockState(blockPosRight).getBlock().getDefaultState().isFullBlock()) {
-					worldIn.setBlockState(blockPosRight, Blocks.TORCH.getDefaultState());
-				}
+				setBlock(worldIn, blockPosLeft, Blocks.GLOWSTONE);
+				setBlock(worldIn, blockPosRight, Blocks.GLOWSTONE);
 			}
 			break;
 		default:
 			break;
 		}
 
+	}
+
+	/**
+	 * Sets a given block on given position (only if position contains a
+	 * fullblock block)
+	 *
+	 * @param worldIn
+	 * @param blockPos
+	 * @param block
+	 */
+	private void setBlock(World worldIn, BlockPos blockPos, Block block) {
+		if (worldIn.getBlockState(blockPos).getBlock().getDefaultState().isFullBlock()) {
+			worldIn.setBlockState(blockPos, block.getDefaultState());
+		}
 	}
 }

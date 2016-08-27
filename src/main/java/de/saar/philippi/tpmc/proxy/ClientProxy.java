@@ -11,7 +11,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerClientData() {
 		// TODO: ALLES SCHICKER MACHEN
-		registerBlock(TpmcMod.booomBlock);
+		registerBlock(TpmcMod.harvest10Block);
 	}
 
 	private void registerItems(Item item) {

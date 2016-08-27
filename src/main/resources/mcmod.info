@@ -2,13 +2,13 @@
 {
   "modid": "tpmcmod",
   "name": "TPMC Mod",
-  "description": "Example placeholder mod.",
+  "description": "This mod contains at the moment only one harvester block which makes the life easier...bla bla",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Troilus77"],
+  "credits": "google search :)",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

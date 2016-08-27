@@ -1,5 +1,5 @@
 {
-    "parent": "tpmc:block/booom",
+    "parent": "tpmc:block/harvest10Block",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -1,4 +1,4 @@
-package de.saar.philippi.tpmc.harvester;
+package de.saar.philippi.tpmc.harvester.nineblocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-public class HarvestHelper {
+public class Harvest3x3Helper {
 
 	/**
 	 * Gets all all block from given source (including)
@@ -50,7 +50,7 @@ public class HarvestHelper {
 		}
 
 		blocks3x3.add(centerPosition);
-		blocks3x3.addAll(HarvestHelper.getNeighborBlocks(centerPosition, side));
+		blocks3x3.addAll(Harvest3x3Helper.getNeighborBlocks(centerPosition, side));
 
 		return blocks3x3;
 	}
