@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 public interface IsHarvester {
 	/**
-	 * this method triggers the harvesting
+	 * Triggers the harvesting
 	 *
 	 * @param worldIn
 	 * @param pos

@@ -7,7 +7,64 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
 public class HarvestHelper {
-	public static List<BlockPos> getNeighbourBlocks(BlockPos centerPosition, EnumFacing side) {
+
+	/**
+	 * Gets all all block from given source (including)
+	 *
+	 * @param sourcePos
+	 *            source block position
+	 * @param level
+	 *            level to determine from which level the block positiong should
+	 *            be returned
+	 * @param side
+	 *            the side where the player clicks at the harvestblock
+	 *
+	 * @return a list of block position or null
+	 */
+	public static List<BlockPos> get3x3BlockPos(BlockPos sourcePos, int level, EnumFacing side) {
+		List<BlockPos> blocks3x3 = new ArrayList<>();
+		BlockPos centerPosition = null;
+
+		switch (side) {
+		case UP:
+			centerPosition = new BlockPos(sourcePos.getX(), sourcePos.getY() - level, sourcePos.getZ());
+			break;
+		case DOWN:
+			centerPosition = new BlockPos(sourcePos.getX(), sourcePos.getY() + level, sourcePos.getZ());
+			break;
+		case NORTH:
+			centerPosition = new BlockPos(sourcePos.getX(), sourcePos.getY(), sourcePos.getZ() + level);
+			break;
+		case SOUTH:
+			centerPosition = new BlockPos(sourcePos.getX(), sourcePos.getY(), sourcePos.getZ() - level);
+			break;
+		case EAST:
+			centerPosition = new BlockPos(sourcePos.getX() - level, sourcePos.getY(), sourcePos.getZ());
+			break;
+		case WEST:
+			centerPosition = new BlockPos(sourcePos.getX() + level, sourcePos.getY(), sourcePos.getZ());
+			break;
+		default:
+			centerPosition = sourcePos;
+			break;
+		}
+
+		blocks3x3.add(centerPosition);
+		blocks3x3.addAll(HarvestHelper.getNeighborBlocks(centerPosition, side));
+
+		return blocks3x3;
+	}
+
+	/**
+	 * Get all neighbor blocks depending on given parameters
+	 *
+	 * @param centerPosition
+	 *            source block
+	 * @param side
+	 *            side from where the player hit the block
+	 * @return
+	 */
+	private static List<BlockPos> getNeighborBlocks(BlockPos centerPosition, EnumFacing side) {
 		List<BlockPos> neigbours = new ArrayList<BlockPos>();
 		switch (side) {
 		case UP:
@@ -56,42 +113,5 @@ public class HarvestHelper {
 		}
 
 		return neigbours;
-	}
-
-	public static List<BlockPos> get9x9BlockPos(BlockPos sourcePos, int level, EnumFacing side) {
-		List<BlockPos> blocks9x9 = new ArrayList<>();
-		BlockPos centerPosition = null;
-
-		switch (side) {
-		case UP:
-			centerPosition = new BlockPos(sourcePos.getX(), sourcePos.getY() - level, sourcePos.getZ());
-
-			break;
-		case DOWN:
-			centerPosition = new BlockPos(sourcePos.getX(), sourcePos.getY() + level, sourcePos.getZ());
-
-			break;
-
-		case NORTH:
-			centerPosition = new BlockPos(sourcePos.getX(), sourcePos.getY(), sourcePos.getZ() + level);
-			break;
-		case SOUTH:
-			centerPosition = new BlockPos(sourcePos.getX(), sourcePos.getY(), sourcePos.getZ() - level);
-			break;
-		case EAST:
-			centerPosition = new BlockPos(sourcePos.getX() - level, sourcePos.getY(), sourcePos.getZ());
-			break;
-		case WEST:
-			centerPosition = new BlockPos(sourcePos.getX() + level, sourcePos.getY(), sourcePos.getZ());
-			break;
-		default:
-			centerPosition = sourcePos;
-			break;
-		}
-
-		blocks9x9.add(centerPosition);
-		blocks9x9.addAll(HarvestHelper.getNeighbourBlocks(centerPosition, side));
-
-		return blocks9x9;
 	}
 }

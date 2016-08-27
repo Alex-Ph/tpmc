@@ -10,6 +10,7 @@ public class GabbaCreativeTab extends CreativeTabs {
 		super("gabba");
 
 		TpmcMod.gabbaBlock.setCreativeTab(this);
+		TpmcMod.booomBlock.setCreativeTab(this);
 		TpmcMod.gabbaItem.setCreativeTab(this);
 	}
 

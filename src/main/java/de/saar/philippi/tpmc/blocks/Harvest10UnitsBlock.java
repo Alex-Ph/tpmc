@@ -1,6 +1,6 @@
 package de.saar.philippi.tpmc.blocks;
 
-import de.saar.philippi.tpmc.harvester.Harvester9x9;
+import de.saar.philippi.tpmc.harvester.Harvester3x3;
 import de.saar.philippi.tpmc.harvester.IsHarvester;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -12,11 +12,17 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BooomBlock extends BasicBlock {
+/**
+ * This Block destroys 3x3x10 (10 = level) blocks depending on the clicked side of this block
+ * 
+ * @author AlexP
+ *
+ */
+public class Harvest10UnitsBlock extends BasicBlock {
 
-	private final IsHarvester harvester = new Harvester9x9(10);
+	private final IsHarvester harvester = new Harvester3x3(10);
 
-	public BooomBlock() {
+	public Harvest10UnitsBlock() {
 		super(Material.ROCK, "booom");
 	}
 
