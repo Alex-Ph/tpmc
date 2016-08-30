@@ -10,12 +10,8 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerClientData() {
-		registerItems(TpmcMod.gabbaItem);
-
-		registerBlock(TpmcMod.gabbaBlock);
-
 		// TODO: ALLES SCHICKER MACHEN
-		registerBlock(TpmcMod.booomBlock);
+		registerBlock(TpmcMod.harvest10Block);
 	}
 
 	private void registerItems(Item item) {

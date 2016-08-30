@@ -9,14 +9,12 @@ public class GabbaCreativeTab extends CreativeTabs {
 	public GabbaCreativeTab() {
 		super("gabba");
 
-		TpmcMod.gabbaBlock.setCreativeTab(this);
-		TpmcMod.booomBlock.setCreativeTab(this);
-		TpmcMod.gabbaItem.setCreativeTab(this);
+		TpmcMod.harvest10Block.setCreativeTab(this);
 	}
 
 	@Override
 	public Item getTabIconItem() {
-		return Item.getItemFromBlock(TpmcMod.gabbaBlock);
+		return Item.getItemFromBlock(TpmcMod.harvest10Block);
 	}
 
 }

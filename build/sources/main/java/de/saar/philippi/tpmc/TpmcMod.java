@@ -1,8 +1,6 @@
 package de.saar.philippi.tpmc;
 
-import de.saar.philippi.tpmc.blocks.BooomBlock;
-import de.saar.philippi.tpmc.blocks.GabbaBlock;
-import de.saar.philippi.tpmc.items.GabbaItem;
+import de.saar.philippi.tpmc.blocks.Harvest10UnitsBlock;
 import de.saar.philippi.tpmc.proxy.CommonProxy;
 import de.saar.philippi.tpmc.tabs.GabbaCreativeTab;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,12 +18,7 @@ public class TpmcMod {
 	public static final String MODID = "tpmc";
 	public static final String VERSION = "1.0";
 
-	// Items
-	public static final GabbaItem gabbaItem = new GabbaItem();
-
-	// Blocks
-	public static final GabbaBlock gabbaBlock = new GabbaBlock();
-	public static final BooomBlock booomBlock = new BooomBlock();
+	public static final Harvest10UnitsBlock harvest10Block = new Harvest10UnitsBlock();
 
 	@SidedProxy(clientSide = "de.saar.philippi.tpmc.proxy.ClientProxy", serverSide = "de.saar.philippi.tpmc.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -35,23 +28,18 @@ public class TpmcMod {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
 
-		// Items
-		GameRegistry.register(gabbaItem);
-
 		// Blocks
-		GameRegistry.register(gabbaBlock);
-		GameRegistry.register(booomBlock);
+		GameRegistry.register(harvest10Block);
 
 		// ItemBlock
-		GameRegistry.register(gabbaBlock.asItemBlock());
-		GameRegistry.register(booomBlock.asItemBlock());
+		GameRegistry.register(harvest10Block.asItemBlock());
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 
 		// Receipe
-		GameRegistry.addShapedRecipe(new ItemStack(Blocks.TNT), "gg", "gg", 'g', gabbaItem);
+		GameRegistry.addShapedRecipe(new ItemStack(harvest10Block), "dd", "dd", 'd', Blocks.DIRT);
 
 		proxy.registerClientData();
 	}
