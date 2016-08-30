@@ -28,7 +28,9 @@ public class Harvester3x3 implements IsHarvester {
 
 			List<BlockPos> blocks = Harvest3x3Helper.get3x3BlockPos(pos, i, side);
 
-			blocks.forEach(blockPosToChange -> harvestBlock(worldIn, blockPosToChange));
+			for (BlockPos blockPos : blocks) {
+				harvestBlock(worldIn, blockPos);
+			}
 
 			addTools(worldIn, pos, i, side);
 		}

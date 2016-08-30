@@ -22,7 +22,7 @@ public class Harvest3x3Helper {
 	 * @return a list of block position or null
 	 */
 	public static List<BlockPos> get3x3BlockPos(BlockPos sourcePos, int level, EnumFacing side) {
-		List<BlockPos> blocks3x3 = new ArrayList<>();
+		List<BlockPos> blocks3x3 = new ArrayList<BlockPos>();
 		BlockPos centerPosition = null;
 
 		switch (side) {
@@ -66,6 +66,7 @@ public class Harvest3x3Helper {
 	 */
 	private static List<BlockPos> getNeighborBlocks(BlockPos centerPosition, EnumFacing side) {
 		List<BlockPos> neigbours = new ArrayList<BlockPos>();
+		System.out.println("Side: " + side);
 		switch (side) {
 		case UP:
 		case DOWN:
@@ -96,7 +97,7 @@ public class Harvest3x3Helper {
 			break;
 		case WEST:
 		case EAST:
-			neigbours.add(new BlockPos(centerPosition.getX() - 1, centerPosition.getY(), centerPosition.getZ() - 1));
+			neigbours.add(new BlockPos(centerPosition.getX(), centerPosition.getY() - 1, centerPosition.getZ() - 1));
 			neigbours.add(new BlockPos(centerPosition.getX(), centerPosition.getY() - 1, centerPosition.getZ()));
 			neigbours.add(new BlockPos(centerPosition.getX(), centerPosition.getY() - 1, centerPosition.getZ() + 1));
 
