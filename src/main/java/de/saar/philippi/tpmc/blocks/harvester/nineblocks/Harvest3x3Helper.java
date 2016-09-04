@@ -1,4 +1,4 @@
-package de.saar.philippi.tpmc.harvester.nineblocks;
+package de.saar.philippi.tpmc.blocks.harvester.nineblocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class Harvest3x3Helper {
 	 *
 	 * @return a list of block position or null
 	 */
-	public static List<BlockPos> get3x3BlockPos(BlockPos sourcePos, int level, EnumFacing side) {
+	static List<BlockPos> get3x3BlockPos(BlockPos sourcePos, int level, EnumFacing side) {
 		List<BlockPos> blocks3x3 = new ArrayList<BlockPos>();
 		BlockPos centerPosition = null;
 
@@ -66,7 +66,6 @@ public class Harvest3x3Helper {
 	 */
 	private static List<BlockPos> getNeighborBlocks(BlockPos centerPosition, EnumFacing side) {
 		List<BlockPos> neigbours = new ArrayList<BlockPos>();
-		System.out.println("Side: " + side);
 		switch (side) {
 		case UP:
 		case DOWN:

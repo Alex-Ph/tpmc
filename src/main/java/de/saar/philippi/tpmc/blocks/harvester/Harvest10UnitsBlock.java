@@ -1,11 +1,12 @@
-package de.saar.philippi.tpmc.blocks;
+package de.saar.philippi.tpmc.blocks.harvester;
 
-import de.saar.philippi.tpmc.harvester.IsHarvester;
-import de.saar.philippi.tpmc.harvester.nineblocks.Harvester3x3;
+import de.saar.philippi.tpmc.blocks.harvester.nineblocks.Harvester3x3;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -19,12 +20,19 @@ import net.minecraft.world.World;
  * @author AlexP
  *
  */
-public class Harvest10UnitsBlock extends BasicBlock {
+public class Harvest10UnitsBlock extends Block {
 
-	private final IsHarvester harvester = new Harvester3x3(10);
+	private final Harvester3x3 harvester = new Harvester3x3(10);
 
 	public Harvest10UnitsBlock() {
-		super(Material.ROCK, "harvest10Block");
+		super(Material.ROCK);
+
+		setNames("harvest10Block");
+	}
+
+	private void setNames(String name) {
+		setUnlocalizedName(name);
+		setRegistryName(name);
 	}
 
 	@Override
@@ -39,6 +47,13 @@ public class Harvest10UnitsBlock extends BasicBlock {
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		worldIn.newExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 40, true, true);
+	}
+
+	public ItemBlock asItemBlock() {
+		ItemBlock itemBlock = new ItemBlock(this);
+		itemBlock.setRegistryName(getRegistryName());
+
+		return itemBlock;
 	}
 
 }

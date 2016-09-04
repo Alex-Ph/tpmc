@@ -1,15 +1,14 @@
-package de.saar.philippi.tpmc.harvester.nineblocks;
+package de.saar.philippi.tpmc.blocks.harvester.nineblocks;
 
 import java.util.List;
 
-import de.saar.philippi.tpmc.harvester.IsHarvester;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class Harvester3x3 implements IsHarvester {
+public class Harvester3x3 {
 	private int level;
 
 	/**
@@ -22,7 +21,6 @@ public class Harvester3x3 implements IsHarvester {
 		this.level = level;
 	}
 
-	@Override
 	public void harvest(World worldIn, BlockPos pos, EnumFacing side) {
 		for (int i = 0; i <= level; i++) {
 
