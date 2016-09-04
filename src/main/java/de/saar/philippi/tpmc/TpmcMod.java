@@ -1,6 +1,7 @@
 package de.saar.philippi.tpmc;
 
 import de.saar.philippi.tpmc.proxy.CommonProxy;
+import de.saar.philippi.tpmc.tpmc.TpmcModRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -17,12 +18,12 @@ public class TpmcMod {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
-		TpmcModFactory.registerBlocks();
+		TpmcModRegistry.registerBlocks();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		TpmcModFactory.registerRecipes();
+		TpmcModRegistry.registerRecipes();
 
 		proxy.registerClientData();
 	}

@@ -1,6 +1,6 @@
 package de.saar.philippi.tpmc.proxy;
 
-import de.saar.philippi.tpmc.TpmcModFactory;
+import de.saar.philippi.tpmc.tpmc.TpmcModFactory;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

@@ -4,6 +4,7 @@ import de.saar.philippi.tpmc.blocks.harvester.nineblocks.Harvester3x3;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -28,6 +29,7 @@ public class Harvest10UnitsBlock extends Block {
 		super(Material.ROCK);
 
 		setNames("harvest10Block");
+		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
 	private void setNames(String name) {
