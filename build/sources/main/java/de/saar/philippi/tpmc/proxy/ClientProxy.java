@@ -1,6 +1,6 @@
 package de.saar.philippi.tpmc.proxy;
 
-import de.saar.philippi.tpmc.TpmcMod;
+import de.saar.philippi.tpmc.tpmc.TpmcModFactory;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -10,8 +10,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerClientData() {
-		// TODO: ALLES SCHICKER MACHEN
-		registerBlock(TpmcMod.harvest10Block);
+		registerBlock(TpmcModFactory.getHarvest10block());
 	}
 
 	private void registerItems(Item item) {
