@@ -16,4 +16,9 @@ public class TpmcModRegistry {
 	public static void registerRecipes() {
 		GameRegistry.addShapedRecipe(new ItemStack(TpmcModFactory.getHarvest10block()), "dd", "dd", 'd', Blocks.DIRT);
 	}
+
+	public static void registerItems() {
+		GameRegistry.register(TpmcModFactory.getBratzGunItem());
+
+	}
 }
